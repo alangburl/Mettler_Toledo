@@ -1,8 +1,6 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import serial
 import time
-from serial_interface import SerialInterface,SerialInterfaces,find_serial_interface_ports
+# from serial_interface import SerialInterface,SerialInterfaces,find_serial_interface_ports
 
 class Mettler_Toledo():
     def __init__(self, com_port,debug=False):
