@@ -66,6 +66,7 @@ class Mettler_Toledo():
             self.serial_device.flushOutput()
     def _abort(self):
         self._write(self.commands['read_commands']['abort'])
+        self._clear_buffer()
         
     def set_parameter(self,command,value):
         write_params=self.commands['write_commands'][command]
@@ -86,6 +87,7 @@ class Mettler_Toledo():
                 self._write(self.commands['read_commands'][command])
         if not self.debug:
             data_out=self.serial_device.readline()
+            self._clear_buffer()
             return data_out.decode().replace('"','')
     
     def read_continuous(self,start_command,**kwargs):
@@ -114,6 +116,7 @@ class Mettler_Toledo():
                 times.append(time.time()-start)
                 time.sleep(wait)
         self._abort()
+        self._clear_buffer()
         return data, times
     
     def close_serial(self):
